@@ -1,10 +1,14 @@
 {
-  "name": "semantic-release-plugin-template",
+  "name": "@tymonmarek/wally",
   "version": "0.1.0",
   "description": "A minimal plugin template for semantic-release.",
   "main": "dist/index.js",
-  "repository": "https://github.com/TymonMarek/semantic-release-plugin-template",
+  "repository": "https://github.com/TymonMarek/wally",
   "author": "Tymon Marek <tymon.marek@icloud.com>",
+  "bugs": {
+    "email": "tymon.marek@icloud.com",
+    "url": "https://github.com/TymonMarek/wally/issues"
+  },
   "license": "MIT",
   "scripts": {
     "build": "tsc",
