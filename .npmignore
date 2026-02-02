@@ -32,3 +32,6 @@ prettier.config.ts
 # Ignore TypeScript configuration files
 tsconfig.build.json
 tsconfig.json
+
+# Semantic release configuration
+.releaserc
