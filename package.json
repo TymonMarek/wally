@@ -24,7 +24,7 @@
     "prepublishOnly": "npm run build"
   },
   "lint-staged": {
-    "*.ts": [
+    "!(*.d).ts": [
       "eslint --fix -c eslint.config.mts",
       "prettier --config prettier.config.ts --write"
     ],
