@@ -1,20 +1,39 @@
-// import {
-//   AnalyzeCommitsContext,
-//   GenerateNotesContext,
-//   PublishContext,
-//   PrepareContext,
-//   VerifyConditionsContext,
-//   VerifyReleaseContext,
-//   SuccessContext,
-//   FailContext,
-//   GlobalConfig,
-// } from "semantic-release";
-// import { PluginConfig } from "./config";
+import {
+  // AnalyzeCommitsContext,
+  // GenerateNotesContext,
+  // PublishContext,
+  // PrepareContext,
+  VerifyConditionsContext,
+  // VerifyReleaseContext,
+  // SuccessContext,
+  // FailContext,
+} from "semantic-release";
+import { PluginConfig } from "./config";
+import { verifyWally } from "./verify";
+import { getWallyPackage } from "./package";
 
-// export async function verifyConditions(
-//   pluginConfig: PluginConfig,
-//   context: VerifyConditionsContext,
-// ) {}
+// let verified: boolean = false;
+
+export async function verifyConditions(
+  pluginConfig: PluginConfig,
+  context: VerifyConditionsContext,
+) {
+  const errors = await verifyWally(pluginConfig, context);
+
+  try {
+    await getWallyPackage(pluginConfig, context);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      errors.push(...errors);
+    }
+  }
+
+  if (errors.length > 0) {
+    throw new AggregateError(errors);
+  }
+
+  // verified = true;
+}
 
 // export async function analyzeCommits(
 //   pluginConfig: PluginConfig,
