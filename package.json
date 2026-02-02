@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "test": "jest",
@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run build"
   },
   "lint-staged": {
-    "*.{ts,mts,js,jsx}": [
+    "*.{ts}": [
       "npm run lint",
       "npm run format",
       "npm run build",
