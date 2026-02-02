@@ -4,7 +4,10 @@
   "description": "A minimal plugin template for semantic-release.",
   "main": "build/index.js",
   "homepage": "https://github.com/TymonMarek/wally",
-  "repository": "https://github.com/TymonMarek/wally",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TymonMarek/wally.git"
+  },
   "author": "Tymon Marek <tymon.marek@icloud.com>",
   "bugs": {
     "email": "tymon.marek@icloud.com",
