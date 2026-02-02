@@ -1,0 +1,31 @@
+name: Run tests on push to any branch
+
+on:
+  push:
+    branches:
+      - "*"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          cache: npm
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm clean-install
+
+      - name: Run tests
+        run: npm test
