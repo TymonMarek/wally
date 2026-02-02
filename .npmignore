@@ -1,0 +1,34 @@
+# Ignore GitHub configuration files
+.github/
+
+# Ignore husky configuration
+.husky/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore docs
+docs/
+
+# Ignore source files
+src/
+
+# Ignore test files
+tests/
+
+# Ignore configuration files
+.editorconfig
+
+# Ignore ESLint configuration files
+eslint.config.js
+
+# Ignore Jest configuration files
+jest.config.js
+
+# Ignore Prettier configuration files
+.prettierignore
+prettier.config.ts
+
+# Ignore TypeScript configuration files
+tsconfig.build.json
+tsconfig.json

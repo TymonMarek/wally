@@ -2,8 +2,9 @@
   "name": "@tymonmarek/wally",
   "version": "0.1.0",
   "description": "A minimal plugin template for semantic-release.",
-  "main": "build/index.js",
   "homepage": "https://github.com/TymonMarek/wally",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TymonMarek/wally.git"
