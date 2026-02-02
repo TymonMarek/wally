@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A minimal plugin template for semantic-release.",
   "main": "build/index.js",
+  "homepage": "https://github.com/TymonMarek/wally",
   "repository": "https://github.com/TymonMarek/wally",
   "author": "Tymon Marek <tymon.marek@icloud.com>",
   "bugs": {
@@ -12,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint --fix .",
+    "lint": "eslint --fix -c eslint.config.mts .",
     "format": "prettier --write .",
     "test": "jest",
     "prepare": "husky",
@@ -20,15 +21,12 @@
     "prepublishOnly": "npm run build"
   },
   "lint-staged": {
-    "*.{ts}": [
-      "npm run lint",
-      "npm run format",
-      "npm run build",
-      "npm run test"
+    "*.ts": [
+      "eslint --fix -c eslint.config.mts",
+      "prettier --config prettier.config.ts --write"
     ],
-    "*.{json,md}": [
-      "npm run lint",
-      "npm run format"
+    "*.md": [
+      "npm run lint"
     ]
   },
   "release": {
