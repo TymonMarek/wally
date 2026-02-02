@@ -1,35 +1,32 @@
 {
-  "extends": "@tsconfig/node20/tsconfig.json",
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node 20",
-  "_version": "20.1.0",
 
   "compilerOptions": {
-    "lib": ["es2023"],
-    "module": "node16",
-    "target": "es2022",
+    "rootDir": "./src",
+    "outDir": "./build",
+
+    "lib": ["ESNext"],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
 
     "strict": true,
-    "noImplicitAny": true,
+    "alwaysStrict": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
+
+    "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noImplicitThis": true,
-    "alwaysStrict": true,
+    "noErrorTruncation": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+
     "esModuleInterop": true,
     "skipLibCheck": false,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node16",
-    "outDir": "./build",
-    "rootDir": "./src",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noErrorTruncation": true,
     "removeComments": true
-  },
-
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  }
 }
