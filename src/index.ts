@@ -9,48 +9,49 @@
 //   FailContext,
 //   GlobalConfig,
 // } from "semantic-release";
+// import { PluginConfig } from "./config";
 
 // export async function verifyConditions(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: VerifyConditionsContext,
 // ) {}
 
 // export async function analyzeCommits(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: AnalyzeCommitsContext,
 // ) {}
 
 // export async function verifyRelease(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: VerifyReleaseContext,
 // ) {}
 
 // export async function generateNotes(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: GenerateNotesContext,
 // ) {}
 
 // export async function addChannel(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: VerifyReleaseContext,
 // ) {}
 
 // export async function prepare(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: PrepareContext,
 // ) {}
 
 // export async function publish(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: PublishContext,
 // ) {}
 
 // export async function success(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: SuccessContext,
 // ) {}
 
 // export async function fail(
-//   pluginConfig: GlobalConfig,
+//   pluginConfig: PluginConfig,
 //   context: FailContext,
 // ) {}
