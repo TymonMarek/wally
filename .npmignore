@@ -20,10 +20,10 @@ tests/
 .editorconfig
 
 # Ignore ESLint configuration files
-eslint.config.js
+eslint.config.mts
 
 # Ignore Jest configuration files
-jest.config.js
+jest.config.ts
 
 # Ignore Prettier configuration files
 .prettierignore
