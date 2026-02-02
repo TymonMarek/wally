@@ -19,7 +19,7 @@ export default defineConfig([
     languageOptions: { globals: { ...globals.node, ...globals.jest } },
   },
   {
-    ignores: ["dist/**", "node_modules/**"],
+    ignores: ["dist/**", "node_modules/**", "**/*.d.ts"],
   },
   {
     files: ["**/*.md"],
