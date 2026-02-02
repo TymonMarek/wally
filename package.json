@@ -25,8 +25,8 @@
   },
   "lint-staged": {
     "!(*.d).ts": [
-      "eslint --fix -c eslint.config.mts",
-      "prettier --config prettier.config.ts --write"
+      "eslint --fix --config eslint.config.mts",
+      "prettier --write --config prettier.config.ts"
     ],
     "*.md": [
       "npm run lint"
