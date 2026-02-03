@@ -31,6 +31,7 @@ export default defineConfig([
       "**/*.d.ts",
       "eslint.config.{js,cjs,mjs,ts,mts,cts}",
       "jest.config.{js,cjs,mjs,ts,mts,cts}",
+      "commitlint.config.{js,cjs,mjs,ts,mts,cts}",
       "tsconfig*.json",
       "coverage/**",
       ".husky/_/**",

@@ -1,9 +1,6 @@
 name: Tests
 
-on:
-  push:
-    branches:
-      - "*"
+on: [push, pull_request]
 
 permissions:
   contents: read
@@ -32,6 +29,14 @@ jobs:
 
       - name: Run formatter
         run: npm run format:check
+
+      - name: Validate commit
+        if: github.event_name == 'push'
+        run: npx commitlint --last --verbose
+
+      - name: Validate pull request
+        if: github.event_name == 'pull_request'
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
       - name: Run tests
         run: npm test
