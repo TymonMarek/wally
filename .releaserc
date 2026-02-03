@@ -8,6 +8,10 @@
     {
       "name": "alpha",
       "prerelease": true
+    },
+    {
+      "name": "/^(feat|fix|perf|refactor)\\/.*$/",
+      "prerelease": true
     }
   ],
   "plugins": [
