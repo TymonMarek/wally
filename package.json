@@ -17,7 +17,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "lint:check": "eslint -c eslint.config.mts .",
     "lint": "eslint --fix -c eslint.config.mts .",
+    "format:check": "prettier --check .",
     "format": "prettier --write .",
     "test": "jest",
     "prepare": "husky",
@@ -32,7 +34,7 @@
       "prettier --write --config prettier.config.ts"
     ],
     "*.md": [
-      "npm run lint"
+      "eslint --fix --config eslint.config.mts"
     ]
   },
   "devDependencies": {
