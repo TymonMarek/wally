@@ -19,12 +19,22 @@ export default defineConfig([
     languageOptions: { globals: { ...globals.node, ...globals.jest } },
   },
   {
-    ignores: ["dist/**", "node_modules/**", "**/*.d.ts"],
-  },
-  {
     files: ["**/*.md"],
     plugins: { markdown },
     language: "markdown/gfm",
     extends: ["markdown/recommended"],
+  },
+  {
+    ignores: [
+      "build/**",
+      "node_modules/**",
+      "**/*.d.ts",
+      "eslint.config.{js,cjs,mjs,ts,mts,cts}",
+      "jest.config.{js,cjs,mjs,ts,mts,cts}",
+      "tsconfig*.json",
+      "coverage/**",
+      ".husky/_/**",
+      ".vscode/**",
+    ],
   },
 ]);
