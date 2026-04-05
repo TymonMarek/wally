@@ -41,3 +41,6 @@ commitlint.config.mts
 
 # Build output
 build/
+
+# Esbuild configuration
+esbuild.config.mts
