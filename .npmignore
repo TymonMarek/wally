@@ -38,3 +38,6 @@ tsconfig.json
 
 # Commitlint configuration
 commitlint.config.mts
+
+# Build output
+build/

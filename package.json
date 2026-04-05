@@ -3,8 +3,7 @@
   "version": "0.4.3",
   "description": "A minimal plugin template for semantic-release.",
   "homepage": "https://github.com/TymonMarek/wally",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TymonMarek/wally.git"
@@ -16,6 +15,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "minify": "npx jiti esbuild.config.mts",
     "build": "tsc -p tsconfig.build.json",
     "lint:check": "eslint -c eslint.config.mts .",
     "lint": "eslint --fix -c eslint.config.mts .",
@@ -27,7 +27,7 @@
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "audit": "corepack npm audit signatures",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm run minify",
     "release": "semantic-release"
   },
   "lint-staged": {
@@ -54,6 +54,7 @@
     "@types/semantic-release__error": "^3.0.3",
     "@types/signale": "^1.4.7",
     "corepack": "^0.34.6",
+    "esbuild": "^0.28.0",
     "eslint": "^9.39.2",
     "globals": "^17.3.0",
     "husky": "^9.1.7",

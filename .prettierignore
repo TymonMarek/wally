@@ -1,2 +1,6 @@
 # Ignore coverage directory
 coverage
+
+# Ignore build and dist directories
+build
+dist

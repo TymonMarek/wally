@@ -27,6 +27,7 @@ export default defineConfig([
   {
     ignores: [
       "build/**",
+      "dist/**",
       "node_modules/**",
       "**/*.d.ts",
       "eslint.config.{js,cjs,mjs,ts,mts,cts}",
