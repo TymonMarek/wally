@@ -1,6 +1,6 @@
 {
   "name": "@tymonmarek/wally",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A minimal plugin template for semantic-release.",
   "homepage": "https://github.com/TymonMarek/wally",
   "main": "build/index.js",
