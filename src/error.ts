@@ -1,8 +1,7 @@
 import SemanticReleaseError from "@semantic-release/error";
 
-import { homepage } from "../package.json";
-
-export const link = (file: string) => `${homepage}/blob/main/${file}`;
+export const link = (file: string) =>
+  `https://github.com/TymonMarek/wally/blob/main/${file}`;
 
 export type ErrorDefinition = {
   message: string;
