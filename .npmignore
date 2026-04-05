@@ -35,3 +35,6 @@ tsconfig.json
 
 # Semantic release configuration
 .releaserc
+
+# Commitlint configuration
+commitlint.config.mts
