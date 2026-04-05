@@ -27,7 +27,7 @@ jest.config.ts
 
 # Ignore Prettier configuration files
 .prettierignore
-prettier.config.ts
+prettier.config.mts
 
 # Ignore TypeScript configuration files
 tsconfig.build.json
