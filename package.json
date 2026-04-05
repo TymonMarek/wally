@@ -16,11 +16,11 @@
   "license": "MIT",
   "scripts": {
     "minify": "npx jiti esbuild.config.mts",
-    "build": "tsc -p tsconfig.build.json",
-    "lint:check": "eslint -c eslint.config.mts .",
-    "lint": "eslint --fix -c eslint.config.mts .",
-    "format:check": "prettier --check .",
-    "format": "prettier --write .",
+    "build": "tsc --project tsconfig.build.json",
+    "lint:check": "eslint --config eslint.config.mts .",
+    "lint": "eslint --fix --config eslint.config.mts .",
+    "format:check": "prettier --check --config prettier.config.mts .",
+    "format": "prettier --write --config prettier.config.mts .",
     "commitlint": "commitlint --config commitlint.config.mts --last --verbose",
     "test": "jest",
     "verify": "npm run lint:check && npm run format:check && npm run test",
@@ -33,7 +33,7 @@
   "lint-staged": {
     "!(*.d).ts": [
       "eslint --fix --config eslint.config.mts",
-      "prettier --write --config prettier.config.ts"
+      "prettier --write --config prettier.config.mts"
     ],
     "*.md": [
       "eslint --fix --config eslint.config.mts"
