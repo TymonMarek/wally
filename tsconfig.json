@@ -24,5 +24,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "removeComments": true
-  }
+  },
+  "exclude": ["tests/**/*.ts", "build/**", "coverage/**", "node_modules/**"]
 }

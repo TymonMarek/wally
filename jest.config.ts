@@ -177,8 +177,8 @@ const config: Config.InitialOptions = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\\.ts$": "ts-jest", // Transform TypeScript files with ts-jest
-    "^.+\\.js$": "ts-jest", // Transform JavaScript files too (for packages like @semantic-release/error)
+    "^.+\\.ts$": ["ts-jest", { tsconfig: "./tsconfig.test.json" }], // Transform TypeScript files with ts-jest
+    "^.+\\.js$": ["ts-jest", { tsconfig: "./tsconfig.test.json" }], // Transform JavaScript files too (for packages like @semantic-release/error)
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
