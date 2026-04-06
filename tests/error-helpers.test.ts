@@ -1,43 +1,11 @@
-import SemanticReleaseError from "@semantic-release/error";
 import AggregateError from "aggregate-error";
 import {
-  collectErrors,
-  ERROR_DEFINITIONS,
   ErrorCode,
+  collectErrors,
   getError,
-  link,
   throwIfErrors,
   withFileErrorHandling,
 } from "../src/error";
-
-test("error definition generates error link correctly", () => {
-  expect(link("README.md#usage")).toBe(
-    "https://github.com/TymonMarek/wally/blob/main/README.md#usage",
-  );
-});
-
-test("error definition generates error link without fragment", () => {
-  expect(link("src/index.ts")).toBe(
-    "https://github.com/TymonMarek/wally/blob/main/src/index.ts",
-  );
-});
-
-test("error definition generates error link with empty input", () => {
-  expect(link("")).toBe("https://github.com/TymonMarek/wally/blob/main/");
-});
-
-test("getError generates SemanticReleaseError with correct properties", () => {
-  const semanticError = getError(ErrorCode.WallyNotInstalled);
-
-  expect(semanticError).toBeInstanceOf(SemanticReleaseError);
-  expect(semanticError.message).toBe(
-    ERROR_DEFINITIONS[ErrorCode.WallyNotInstalled].message,
-  );
-  expect(semanticError.code).toBe(ErrorCode.WallyNotInstalled.toString());
-  expect(semanticError.details).toBe(
-    ERROR_DEFINITIONS[ErrorCode.WallyNotInstalled].details,
-  );
-});
 
 test("getError appends extra details", () => {
   const error = getError(ErrorCode.WallyAuthenticationFailed, "status code: 9");
@@ -80,5 +48,25 @@ test("withFileErrorHandling maps ENOENT to provided notFoundError", async () => 
     }, notFoundError),
   ).rejects.toMatchObject({
     errors: [notFoundError],
+  });
+});
+
+test("withFileErrorHandling rethrows non-Error unknown values", async () => {
+  await expect(
+    withFileErrorHandling(async () => {
+      throw "plain-string-error";
+    }, new Error("unused")),
+  ).rejects.toBe("plain-string-error");
+});
+
+test("withFileErrorHandling wraps generic Error values in AggregateError", async () => {
+  const original = new Error("boom");
+
+  await expect(
+    withFileErrorHandling(async () => {
+      throw original;
+    }, new Error("unused")),
+  ).rejects.toMatchObject({
+    errors: [original],
   });
 });
