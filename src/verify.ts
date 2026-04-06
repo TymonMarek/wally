@@ -3,7 +3,7 @@ import SemanticReleaseError from "@semantic-release/error";
 import { PluginConfig } from "./config";
 import { parsePluginArgs } from "./args";
 import { ErrorCode, getError } from "./error";
-import { execa } from "execa";
+import { runCommand } from "./command";
 
 export async function verifyWally(
   pluginConfig: PluginConfig,
@@ -16,12 +16,7 @@ export async function verifyWally(
     errors.push(getError(ErrorCode.WallyTokenMissing));
   }
 
-  const { cwd, env } = context;
-
-  if (
-    (await execa("wally", ["--version"], { reject: false, cwd, env }))
-      .exitCode !== 0
-  ) {
+  if ((await runCommand("wally", ["--version"], context)).exitCode !== 0) {
     errors.push(getError(ErrorCode.WallyNotInstalled));
   }
 

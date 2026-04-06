@@ -1,76 +1,79 @@
 import {
-  // AnalyzeCommitsContext,
-  // GenerateNotesContext,
-  // PublishContext,
-  // PrepareContext,
+  PublishContext,
+  PrepareContext,
   VerifyConditionsContext,
-  // VerifyReleaseContext,
-  // SuccessContext,
-  // FailContext,
 } from "semantic-release";
 import { PluginConfig } from "./config";
+import { collectErrors, throwIfErrors } from "./error";
 import { verifyWally } from "./verify";
 import { getWallyPackage } from "./package";
+import { prepareWally } from "./prepare";
+import { publishWally } from "./publish";
+import { loginWally } from "./login";
 
-// let verified: boolean = false;
+let verified: boolean = false;
+let prepared: boolean = false;
+let authenticated: boolean = false;
 
 export async function verifyConditions(
   pluginConfig: PluginConfig,
   context: VerifyConditionsContext,
 ) {
-  const errors = await verifyWally(pluginConfig, context);
+  const errors: Error[] = [];
 
-  try {
-    await getWallyPackage(pluginConfig, context);
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      errors.push(...errors);
-    }
+  await collectErrors(() => verifyWally(pluginConfig, context), errors);
+  await collectErrors(() => getWallyPackage(pluginConfig, context), errors);
+
+  if (!authenticated) {
+    const didAuthenticate = await collectErrors(
+      () => loginWally(pluginConfig, context),
+      errors,
+    );
+    authenticated = didAuthenticate === true;
   }
 
-  if (errors.length > 0) {
-    throw new AggregateError(errors);
-  }
-
-  // verified = true;
+  throwIfErrors(errors);
+  verified = true;
 }
 
-// export async function analyzeCommits(
-//   pluginConfig: PluginConfig,
-//   context: AnalyzeCommitsContext,
-// ) {}
+export async function prepare(
+  pluginConfig: PluginConfig,
+  context: PrepareContext,
+) {
+  const errors: Error[] = [];
 
-// export async function verifyRelease(
-//   pluginConfig: PluginConfig,
-//   context: VerifyReleaseContext,
-// ) {}
+  if (!verified) {
+    await collectErrors(() => verifyWally(pluginConfig, context), errors);
+  }
 
-// export async function generateNotes(
-//   pluginConfig: PluginConfig,
-//   context: GenerateNotesContext,
-// ) {}
+  await collectErrors(() => getWallyPackage(pluginConfig, context), errors);
+  await collectErrors(() => prepareWally(pluginConfig, context), errors);
 
-// export async function addChannel(
-//   pluginConfig: PluginConfig,
-//   context: VerifyReleaseContext,
-// ) {}
+  throwIfErrors(errors);
+  prepared = true;
+}
 
-// export async function prepare(
-//   pluginConfig: PluginConfig,
-//   context: PrepareContext,
-// ) {}
+export async function publish(
+  pluginConfig: PluginConfig,
+  context: PublishContext,
+) {
+  const errors: Error[] = [];
 
-// export async function publish(
-//   pluginConfig: PluginConfig,
-//   context: PublishContext,
-// ) {}
+  if (!verified) {
+    await collectErrors(() => verifyWally(pluginConfig, context), errors);
+  }
 
-// export async function success(
-//   pluginConfig: PluginConfig,
-//   context: SuccessContext,
-// ) {}
+  await collectErrors(() => getWallyPackage(pluginConfig, context), errors);
 
-// export async function fail(
-//   pluginConfig: PluginConfig,
-//   context: FailContext,
-// ) {}
+  throwIfErrors(errors);
+
+  if (!prepared) {
+    await collectErrors(() => prepareWally(pluginConfig, context), errors);
+    throwIfErrors(errors);
+    prepared = true;
+  }
+
+  await collectErrors(() => publishWally(pluginConfig, context), errors);
+
+  throwIfErrors(errors);
+}
